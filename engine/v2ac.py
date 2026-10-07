@@ -1250,14 +1250,14 @@ class v2ac(engine2):
         os.chmod(filename2, FILE_PARMITION)
         del img_chk
 
-        img_chk = plot_source_characters(newimg, source_characters)
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = plot_source_characters(newimg, source_characters)
         # img_chk_2 = newimg.copy()
         # img_chk = plot_source_characters(img_chk_2, source_characters)
         # if 'img_chk_2' in locals() : del img_chk_2
-        filename2 = file_name+'.D_2.jpg'
-        cv2.imwrite(filename2, img_chk)
-        os.chmod(filename2, FILE_PARMITION)
-        del img_chk
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: filename2 = file_name+'.D_2.jpg'
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: cv2.imwrite(filename2, img_chk)
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: os.chmod(filename2, FILE_PARMITION)
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: del img_chk
 
         self.restore_position_detection_text(source_characters,rs2_ascend,rs3_ascend)
 
@@ -1289,14 +1289,14 @@ class v2ac(engine2):
         source_characters.sort(key=lambda x: (x['bounds'].rect[1],x['bounds'].rect[0]))
 
         # 認識文字書き出し(確認用)
-        img_chk = plot_source_characters(_img2 if img2 is None else img2, source_characters, True)
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = plot_source_characters(_img2 if img2 is None else img2, source_characters, True)
         # img_chk_2 = _img2.copy() if img2 is None else img2.copy()        # img_chk = _img.copy()
         # img_chk = plot_source_characters(img_chk_2, source_characters, True)
         # if 'img_chk_2' in locals() : del img_chk_2
-        filename2 = file_name+'.D_3.jpg'
-        cv2.imwrite(filename2, img_chk)
-        os.chmod(filename2, FILE_PARMITION)
-        del img_chk
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: filename2 = file_name+'.D_3.jpg'
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: cv2.imwrite(filename2, img_chk)
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: os.chmod(filename2, FILE_PARMITION)
+        # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: del img_chk
 
 
         # remove_symbol_charsで必要になるのでsource_charactersにシーケンシャル番号を振る(v2ac独自)
@@ -1374,24 +1374,24 @@ class v2ac(engine2):
             os.chmod(filename2, FILE_PARMITION)
             del img_chk
 
-            img_chk = newimg.copy()
-            img_chk = plot_source_characters(img_chk, source_characters)
-            filename2 = file_name+'.D_2.jpg'
-            cv2.imwrite(filename2, img_chk)
-            os.chmod(filename2, FILE_PARMITION)
-            del img_chk
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = newimg.copy()
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = plot_source_characters(img_chk, source_characters)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: filename2 = file_name+'.D_2.jpg'
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: cv2.imwrite(filename2, img_chk)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: os.chmod(filename2, FILE_PARMITION)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: del img_chk
             self.restore_position_detection_text(source_characters,rs2_ascend,rs3_ascend)
         else :
             filename2 = file_name+'.S_2_0.jpg'
             cv2.imwrite(filename2, newimg)
             os.chmod(filename2, FILE_PARMITION)
             source_texts, source_characters, response, cache_data, img2, _ = super().get_text_detection(no, newimg, file_name, client, def_cache_data={'rotate':r_flags}, force_detection=True)
-            img_chk = newimg.copy()
-            img_chk = plot_source_characters(img_chk, source_characters)
-            filename2 = file_name+'.S_2.jpg'
-            cv2.imwrite(filename2, img_chk)
-            os.chmod(filename2, FILE_PARMITION)
-            del img_chk
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = newimg.copy()
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = plot_source_characters(img_chk, source_characters)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: filename2 = file_name+'.S_2.jpg'
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: cv2.imwrite(filename2, img_chk)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: os.chmod(filename2, FILE_PARMITION)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: del img_chk
         # 大きな文字、小さな文字を取り除く (現状はsource_textsに対して何もしていない)
         debug_print( f'remove_sized_char:{no} -->',level=DEBUG_ROWS_INFO)
         # print( f'remove_sized_char:{no} -->')
@@ -1422,13 +1422,13 @@ class v2ac(engine2):
             source_characters.sort(key=lambda x: (x['bounds'].rect[1],x['bounds'].rect[0]))
 
             # 認識文字書き出し(確認用)
-            img_chk = _img2.copy() if img2 is None else img2.copy()        # img_chk = _img.copy()
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = _img2.copy() if img2 is None else img2.copy()        # img_chk = _img.copy()
 
-            img_chk = plot_source_characters(img_chk, source_characters, True)
-            filename2 = file_name+'.D_3.jpg'
-            cv2.imwrite(filename2, img_chk)
-            os.chmod(filename2, FILE_PARMITION)
-            del img_chk
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: img_chk = plot_source_characters(img_chk, source_characters, True)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: filename2 = file_name+'.D_3.jpg'
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: cv2.imwrite(filename2, img_chk)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: os.chmod(filename2, FILE_PARMITION)
+            # [pmj-aitext-1] 確認用画像(メイリオのフォントが必要。Cloud Run に無く失敗する)のためコメントアウト: del img_chk
 
         if 'newimg' in locals() : del newimg
         if 'img_bk' in locals() : del img_bk

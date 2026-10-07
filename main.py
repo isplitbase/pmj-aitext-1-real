@@ -46,6 +46,7 @@ import contextlib
 import datetime
 import glob
 import hashlib
+import io
 import os
 import shutil
 import tempfile
@@ -145,11 +146,21 @@ def _make_request(root_str, n, flag, filenam):
     }
 
 
-def _run_engine(json_data):
-    """pys/main.py の application() と同じ手順でエンジンを動かす。"""
+def _run_engine(json_data, capture=None):
+    """pys/main.py の application() と同じ手順でエンジンを動かす。
+
+    capture に io.StringIO を渡すと、エンジンのデバッグ出力をそこへ集める(調査用)。
+    """
     response = {"result": 0}
-    # エンジンは print() でも大量に出力するので、普段は捨てる(エラーはログに残す)
-    sink = contextlib.nullcontext() if DEBUG else contextlib.redirect_stdout(util.utility.debug_file)
+    saved_debug_file = util.utility.debug_file
+    if capture is not None:
+        util.utility.debug_file = capture
+        sink = contextlib.redirect_stdout(capture)
+    elif DEBUG:
+        sink = contextlib.nullcontext()
+    else:
+        # エンジンは print() でも大量に出力するので、普段は捨てる(エラーはログに残す)
+        sink = contextlib.redirect_stdout(util.utility.debug_file)
     try:
         with sink:
             pdata = v2ac(json_data, datetime.datetime.now(),
@@ -167,7 +178,36 @@ def _run_engine(json_data):
         response["msg"] = "Error>\n" + traceback.format_exc()
         response["result"] = -200
         traceback.print_exc()
+    finally:
+        util.utility.debug_file = saved_debug_file
     return response
+
+
+# 調査用: どの版が動いているか・実行環境の情報
+API_VERSION = "2026-10-07-debug1"
+
+
+def _env_info():
+    import locale
+    import platform
+    import sys
+    try:
+        import google.cloud.vision as _v
+        vision_file = _v.__file__
+    except Exception:
+        vision_file = None
+    return {
+        "api_version": API_VERSION,
+        "python": sys.version.split()[0],
+        "platform": platform.platform(),
+        "lang": os.environ.get("LANG"),
+        "preferred_encoding": locale.getpreferredencoding(False),
+        "fs_encoding": sys.getfilesystemencoding(),
+        "cv2": cv2.__version__,
+        "numpy": np.__version__,
+        "vision_file": vision_file,
+        "cwd": os.getcwd(),
+    }
 
 
 _MASTER_INFO = None
@@ -217,7 +257,7 @@ def ping():
         text = res.text_annotations[0].description.strip() if res.text_annotations else ""
     except Exception as e:
         return jsonify({"status": "NG", "error": str(e)[:500]}), 502
-    return jsonify({"status": "OK", "text": text})
+    return jsonify({"status": "OK", "text": text, "env": _env_info()})
 
 
 @app.post("/analyze")
@@ -270,8 +310,9 @@ def analyze():
                 return jsonify({"status": "NG", "error": "%d枚目: %s" % (i + 1, e)}), 400
 
         json_data = _make_request(root_str, len(raws), flag, filenam)
+        capture = io.StringIO() if body.get("debug") else None
         with _LOCK:
-            result = _run_engine(json_data)
+            result = _run_engine(json_data, capture)
 
         out = {
             "status": "OK" if result.get("result") == 0 else "NG",
@@ -281,6 +322,14 @@ def analyze():
         }
         if out["status"] != "OK":
             out["error"] = (result.get("msg") or "")[:1000]
+
+        if capture is not None:
+            # 調査用: エンジンのデバッグ出力(長いので先頭と末尾だけ)と実行環境
+            log = capture.getvalue()
+            out["debug_log_head"] = log[:60000]
+            out["debug_log_tail"] = log[-60000:]
+            out["debug_log_bytes"] = len(log)
+            out["env"] = _env_info()
 
         if want_images:
             # エンジンが傾き補正した画像(サーバでは /data/iimgs に入るもの)

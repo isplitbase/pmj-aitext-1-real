@@ -78,7 +78,7 @@ def del_gr_color(result):
   _print('ave2=',np.mean(result))
 
   # result = clear_image(result)
-  cv2.imwrite('result.jpg',result)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('result.jpg',result)
   _cv2_imshow(result)
   return result
 
@@ -462,7 +462,7 @@ def re_extract_str(dst,str_data2):
   str_data3=sorted(str_data2,key=lambda x:(x[1],x[0]))
   _print('img_2')
   _cv2_imshow(img_2)
-  cv2.imwrite('img_2.jpg',img_2)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('img_2.jpg',img_2)
   #print('strdata3----->',str_data3)
   del dst
   del result
@@ -784,7 +784,7 @@ def del_lines(img):
   img_th2 = cv2.dilate(gray2, kernel2, iterations=20)
   #print('img_th2:dilate')
   _cv2_imshow(img_th2)
-  cv2.imwrite('img_th_dilate.jpg',img_th2)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('img_th_dilate.jpg',img_th2)
 
   # img_th2 = cv2.erode(img_th2, kernel2, iterations=20)
   # print('img_th2:erode')
@@ -795,12 +795,12 @@ def del_lines(img):
   img_th2 = cv2.dilate(img_th2, kernel3,iterations=4)
   print('img_th2:1')
   cv2_imshow(img_th2)
-  cv2.imwrite('img_th2_1.jpg',img_th2)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('img_th2_1.jpg',img_th2)
   # 縦線を上下に伸ばす(20230731追記)
   img_th2 = cv2.dilate(img_th2, kernel2,iterations=20)
   _print('img_th2:2')
   _cv2_imshow(img_th2)
-  cv2.imwrite('img_th2_2.jpg',img_th2)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('img_th2_2.jpg',img_th2)
   img_th3 = 255-img_th2
   _print('img_th3:1')
   _cv2_imshow(img_th3)
@@ -1162,4 +1162,4 @@ if __name__ == "__main__":
     newimg,img_disp,rs2_ascend,rs3_ascend,_=del_line_str_right(img,img_bk)
     print('newimg')
     cv2_imshow(newimg)
-    cv2.imwrite('migiyose.jpg',newimg)
+    # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('migiyose.jpg',newimg)

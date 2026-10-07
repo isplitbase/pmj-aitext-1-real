@@ -1497,8 +1497,8 @@ class v2ac(engine2):
         for l in line_list:
             img = cv2.line(img,(l[0],l[1]),(l[2],l[3]),(0,255,0),5)
 
-        cv2.imwrite(path+'.vline.jpg', img)
-        os.chmod(path+'.vline.jpg', FILE_PARMITION)
+        # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite(path+'.vline.jpg', img)
+        # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: os.chmod(path+'.vline.jpg', FILE_PARMITION)
 
         # print('VT_line:' + str(vtl_line))
         # line_list = pd.DataFrame(line_list)
@@ -1516,8 +1516,8 @@ class v2ac(engine2):
             # cv2.rectangle(img, (c['bounds'].rect[0], c['bounds'].rect[1]), (c['bounds'].rect[2], c['bounds'].rect[3]), (0, 255, 0))
 
         if path is not None:
-            cv2.imwrite(path+'.clear.jpg', img)
-            os.chmod(path+'.clear.jpg', FILE_PARMITION)
+            pass  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite(path+'.clear.jpg', img)
+            # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: os.chmod(path+'.clear.jpg', FILE_PARMITION)
 
         return img
 
@@ -7569,7 +7569,7 @@ class v2ac(engine2):
             block_result = self.to_json()
 
             # デバッグ用CSV
-            self.to_result_csv()
+            # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: self.to_result_csv()
 
             return None, None, None, None, block_result
         return None

@@ -6809,7 +6809,7 @@ def get_hv_line(img):
   # print('v2')
   # cv2_imshow(img_v)
   img_v = 255-img_v
-  cv2.imwrite('img_v.jpg',img_v)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('img_v.jpg',img_v)
   #img_h>5の影響大
   img_v=np.where(img_v>10,255,0)
   img_v.astype('uint8')
@@ -8107,12 +8107,12 @@ def v_line_check_bs(img):
 def noicelock_bs(img):
   r,c,stats_v,stats_v_first=get_rc_BS(img)
   cv2.rectangle(img, (0, 0), (stats_v_first-50, img.shape[0]), (255,255,255), cv2.FILLED)
-  cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7493.jpg', img)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7493.jpg', img)
   r,c,stats_v,stats_v_first=get_rc_BS(img)
 
   # cv2.rectangle(img, (0, 0), (c[0]-10, img.shape[0]), (255,0,0), cv2.FILLED)
   cv2_imshow(img)
-  cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7498.jpg', img)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7498.jpg', img)
   print('c',c)
   print('r',r)
 
@@ -8132,7 +8132,7 @@ def noicelock_bs(img):
   img1r=img[top : bottom, left : right]
   img1r_inv=255-img1r
   cv2_imshow(img1r_inv)
-  cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7518.jpg', img1r_inv)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7518.jpg', img1r_inv)
   try:
     hosei_y=h_line_check_bs(img1r_inv)
   except:
@@ -8148,7 +8148,7 @@ def noicelock_bs(img):
   img2r=img[top : bottom, left : right]
   img2r_inv=255-img2r
   cv2_imshow(img2r_inv)
-  cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7518.jpg', img1r_inv)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.7518.jpg', img1r_inv)
   try:
     hosei_y=h_line_check_bs(img2r_inv)
   except:
@@ -8233,7 +8233,7 @@ def noicelock_bs(img):
     x1,y1,x2,y2=box
     cv2.rectangle(img2, (x1, y1), (x2, y2), (255, 250,0), cv2.LINE_AA)
   #確認用（色付）
-  cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.noisy.jpg', img2)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('/home/ec2-user/syoutest/pys/pdf/content_1.noisy.jpg', img2)
 
   return img,boxes
 
@@ -8658,7 +8658,7 @@ def noicelock(img):
     #block座標を用いて水平方向に射影し、横方向のノイズをカット
     #左l_block
     l_block=white_image[0:height,block[0][0]:block[0][1]+50]
-    cv2.imwrite('aaa.jpg',l_block)
+    # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('aaa.jpg',l_block)
     resulting_ranges = vertical_projection_ranges(l_block)
     print('resulting_ranges',resulting_ranges)
 
@@ -9058,7 +9058,7 @@ def get_hv_line_hd1(img):
   # print('v2')
   # cv2_imshow(img_v)
   img_v = 255-img_v
-  cv2.imwrite('img_v.jpg',img_v)
+  # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite('img_v.jpg',img_v)
   #img_h>5の影響大
   img_v=np.where(img_v>10,255,0)
   img_v.astype('uint8')

@@ -280,9 +280,9 @@ class engine(object):
         img_th = img.copy()
 
         img_th = cv2.dilate(img_th, kernel, iterations=4)
-        cv2.imwrite("dilate.jpg",img_th)
+        # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite("dilate.jpg",img_th)
         img_th = cv2.erode(img_th, kernel, iterations=2)
-        cv2.imwrite("erode.jpg",img_th)
+        # [pmj-aitext-1] Cloud Run では不要なデバッグ出力のためコメントアウト: cv2.imwrite("erode.jpg",img_th)
 
         gray_image = cv2.cvtColor(img_th, cv2.COLOR_BGR2GRAY)
         edges = cv2.Canny(gray_image,50,150,apertureSize = 3)

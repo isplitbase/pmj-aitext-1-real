@@ -1,0 +1,16 @@
+# サーバ(test1)の /iTaskScanPapers2 と同じ版に固定する。
+# 版を上げると OCR 結果の構造や画像処理の結果が変わり、ルールがずれるため。
+google-cloud-vision==0.41.0
+google-api-core==1.34.1
+google-auth==2.35.0
+googleapis-common-protos==1.65.0
+grpcio==1.66.1
+protobuf==3.20.3
+opencv-python-headless==4.10.0.84
+numpy==1.24.4
+Pillow==9.5.0
+# v2ac.py が pkg_resources を import するため(新しい setuptools では無くなる)
+setuptools<70
+
+Flask==3.0.3
+gunicorn==22.0.0
